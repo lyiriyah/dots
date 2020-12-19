@@ -1,0 +1,48 @@
+# ZDOTDIR
+ZDOTDIR=/home/lyiriyah/.config/zsh
+
+# set plugdir
+PLUGDIR=$ZDOTDIR/zshplugins
+
+# prompt
+fpath+="/home/lyiriyah/.config/zsh/zshplugins/typewritten"
+autoload -Uz promptinit
+promptinit
+prompt typewritten
+export TYPEWRITTEN_COLOR_MAPPINGS='primary:#a89984;secondary:#a89984;accent:#a89984;notice:#d79921;info_negative:#cc241d;info_positive:#98971a;info_neutral_1:#a89984;info_neutral_2:#a89984;info_special:#689d6a'
+TYPEWRITTEN_PROMPT_LAYOUT="pure"
+
+# use my path
+PATH=$PATH:'/home/lyiriyah/bin':'/home/lyiriyah/.gem/ruby/2.7.0/bin':'/home/lyiriyah/.npm-packages/bin':'/home/lyiriyah/bin/statusbar':'/home/lyiriyah/.local/bin'
+
+# history
+HISTFILE=$ZDOTDIR/zhistory
+HISTSIZE=1000
+SAVEHIST=500
+export EDITOR=/usr/bin/nvim
+export VISUAL=/usr/bin/nvim
+WORDCHARS=${WORDCHARS//\/[&.;]}                                 # Don't consider certain characters part of the word
+
+
+## Keybindings section
+bindkey -v
+bindkey '^[[7~' beginning-of-line                               # Home key
+bindkey '^[[H' beginning-of-line                                # Home key
+bindkey '^[[8~' end-of-line                                     # End key
+bindkey '^[[F' end-of-line                                     # End key
+bindkey '^[[2~' overwrite-mode                                  # Insert key
+bindkey '^[[3~' delete-char                                     # Delete key
+bindkey '^[[C'  forward-char                                    # Right key
+bindkey '^[[D'  backward-char                                   # Left key
+bindkey '^[[5~' history-beginning-search-backward               # Page up key
+bindkey '^[[6~' history-beginning-search-forward                # Page down key
+
+source $ZDOTDIR/zsh_aliases
+
+# Theming section  
+autoload -U compinit colors zcalc
+compinit -d
+
+source $PLUGDIR/zsh-pyenv/zsh-pyenv.plugin.zsh
+source $PLUGDIR/fsh/fast-syntax-highlighting.plugin.zsh
+setopt AUTO_CD

@@ -1,0 +1,46 @@
+# ZDOTDIR
+ZDOTDIR=/home/lyiriyah/.config/zsh
+
+# set plugdir
+PLUGDIR=$ZDOTDIR/zshplugins
+
+# prompt
+fpath+="/home/lyiriyah/.config/zsh/zshplugins/pure"
+autoload -Uz promptinit
+promptinit
+prompt pure
+
+# use my path
+PATH=$PATH:'/home/lyiriyah/bin':'/home/lyiriyah/.gem/ruby/2.7.0/bin':'/home/lyiriyah/.npm-packages/bin':'/home/lyiriyah/bin/statusbar':'/home/lyiriyah/.local/bin:/home/lyiriyah/bin/VSCode-linux-x64'
+
+WORDCHARS=${WORDCHARS//\/[&.;]}
+
+# key bindings
+function nothing() { sleep 0.0000000001 }
+zle -N nothing
+
+bindkey -v
+bindkey -M vicmd "^[[H" beginning-of-line
+bindkey -M vicmd "^[[F" end-of-line
+bindkey -M vicmd '^i' expand-or-complete-prefix
+bindkey -M vicmd '^[[5~' history-incremental-search-backward
+bindkey -M vicmd '^[[6~' history-incremental-search-forward
+bindkey -M vicmd '^[[3~' delete-char
+bindkey -M vicmd '^[[2~' nothing
+bindkey "^[[H" beginning-of-line
+bindkey "^[[F" end-of-line
+bindkey '^i' expand-or-complete-prefix
+bindkey '^[[5~' history-incremental-search-backward
+bindkey '^[[6~' history-incremental-search-forward
+bindkey '^[[3~' delete-char
+bindkey  '^[[2~' nothing
+
+
+source $ZDOTDIR/zsh_aliases
+
+# Theming section
+autoload -U compinit colors zcalc
+compinit -d
+
+source $PLUGDIR/fsh/fast-syntax-highlighting.plugin.zsh
+setopt AUTO_CD

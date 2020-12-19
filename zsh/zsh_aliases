@@ -1,0 +1,137 @@
+hash -d editor=/home/lyiriyah/src/cpp/editor
+hash -d ftl=/home/lyiriyah/games/ftl
+hash -d repos=/home/lyiriyah/src/repos
+hash -d tutorials=/home/lyiriyah/src/tutorials
+
+function dskusg() {
+    du -hB 1G | sort -rn | head -n10
+}
+
+function killdiscord() {
+	for x in $(seq 3); do
+		for i in $(seq 2); do
+			pkill discord-canary
+		done
+		pkill DiscordCanary
+	done
+}
+
+function ex() { 
+	if [[ -f $1 ]]; then 
+		case $1 in
+		      	*.tar.bz2) tar xjf $1 ;;
+	      		*.tar.gz) tar xzf $1 ;;
+		      	*.bz2) bunzip2 $1 ;;
+		      	*.rar) unrar x $1 ;;
+	      		*.gz) gunzip $1 ;;
+		      	*.tar) tar xf $1 ;;
+		      	*.tar.xz) tar xf $1 ;;
+		      	*.tbz2) tar xjf $1 ;;
+		      	*.tgz) tar xzf $1 ;;
+		      	*.zip) unzip $1 ;;
+		      	*.Z) uncompress $1 ;;
+		      	*.7z) 7z x $1 ;;
+	      		*) echo "'$1' cannot be extracted via ex()" ;;
+    		esac
+	else
+	    echo "'$1' is not a valid file"
+	fi
+}
+
+alias wine="/home/lyiriyah/.local/share/lutris/runners/wine/lutris-5.7-9-x86_64/bin/wine" # /home/lyiriyah/games/ftl/FTLGame.exe"
+
+function pa() {
+    case $1 in
+        help)
+            echo 'pa, an all-in-one pulseaudio control'
+            echo
+            echo 'usage: pa on its own to launch pulsemixer'
+            echo '       pa suspend to pass $2 to pasuspender'
+            echo '       pa start/kill to start/kill pulseaudio'
+	    ;;
+        '')
+            pulsemixer ;;
+        'suspend')
+            case $2 in
+		    '')
+			    pa help ;;
+		    *)
+			    pasuspender $2 &>/dev/null
+	    esac
+            ;;
+        start)
+            pulseaudio --start ;;
+        'kill')
+            pulseaudio --kill ;;
+        *)
+            echo Option $1 unrecognised.
+            pa help
+	    ;;
+    esac
+}
+
+alias rm='rm -rf'
+alias y=yes
+alias l='exa -l'
+
+function md() {
+	[[ -d $1 ]] && cd $1 || mkdir $1; cd $1
+}
+
+function bt() {
+	case $1 in
+		connect)
+		       	bluetoothctl connect $(bluetoothctl paired-devices | dmenu | awk '{print $2}') ;;
+		on)
+			bluetoothctl power on ;;
+		off)
+			bluetoothctl power off ;;
+		'')
+			bluetoothctl ;;
+		*)
+			echo Unrecognised option $1.
+		esac
+}
+
+alias rscript='Rscript'
+alias la='exa -a'
+alias _=sudo
+alias yay='yay --sudoloop'
+alias mutt=neomutt
+alias ls=exa
+
+alias srrsc="source /home/lyiriyah/.zshenv"
+
+function edrsc() {
+	case $1 in
+		zshrc)
+			vim /home/lyiriyah/.config/zsh/zshrc ;;
+		aliases)
+			vim /home/lyiriyah/.config/zsh/zsh_aliases ;;
+		env)
+			vim /home/lyiriyah/.config/zsh/env ;;
+		vimrc)
+			vim /home/lyiriyah/.vimrc ;;
+		*)
+			echo Unrecognised option; return ;;
+	esac
+}
+
+function fan() {
+	allow=( 1 2 3 4 5 6 7 full-speed )
+	arg=$1
+	
+	case $arg in
+		get)
+			echo $(cat /proc/acpi/ibm/fan | awk 'BEGIN{ RS="" ; FS="\n"} { print $2 }' | awk ' { print $2 } ') ;;
+		*)
+			[[ "${allow[@]}" =~ "${1}" ]] && echo level $1 | sudo tee /proc/acpi/ibm/fan || printf "Supported arguments:\nget\n$(printf '%s\n' "${allow[@]}")"; return ;;
+	esac
+}
+
+alias ytdl='youtube-dl'
+
+function sl() {
+	exa
+	echo Here\'s what you wanted, idiot.
+}

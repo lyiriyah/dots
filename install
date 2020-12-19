@@ -1,0 +1,27 @@
+vim
+
+Move vim and vimrc to ~/.vim and ~/.vimrc respectively.
+
+Firefox
+
+Open Firefox.
+Close Firefox.
+Run ls ~/.mozilla.
+Remove the contents of any folder with profile in the name.
+Copy the contents of the Firefox folder to that folder.
+
+zsh
+Copy zshenv to ~/.zshenv.
+Copy zsh to ~/.config.
+
+alacritty
+Copy alacritty to ~/.config.
+
+dwm
+
+Copy dwm to wherever you want.
+Run make install.
+
+dmenu
+
+See above.

@@ -1,0 +1,1 @@
+/home/lyiriyah/.config/zsh/zshrc

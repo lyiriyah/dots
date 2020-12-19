@@ -1,0 +1,48 @@
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
+# set plugdir
+PLUGDIR=$ZDOTDIR/zshplugins
+
+# use my path
+PATH=$PATH:'/home/lyiriyah/bin':'/home/lyiriyah/.gem/ruby/2.7.0/bin':'/home/lyiriyah/.npm-packages/bin':'/home/lyiriyah/bin/statusbar':'/home/lyiriyah/.local/bin'
+
+# history
+HISTFILE=$ZDOTDIR/zhistory
+HISTSIZE=1000
+SAVEHIST=500
+export EDITOR=/usr/bin/nvim
+export _JAVA_AWT_WM_NONREPARENTING=1
+export VISUAL=/usr/bin/nvim
+WORDCHARS=${WORDCHARS//\/[&.;]}                                 # Don't consider certain characters part of the word
+
+
+## Keybindings section
+bindkey -v
+bindkey '^[[7~' beginning-of-line                               # Home key
+bindkey '^[[H' beginning-of-line                                # Home key
+bindkey '^[[8~' end-of-line                                     # End key
+bindkey '^[[F' end-of-line                                     # End key
+bindkey '^[[2~' overwrite-mode                                  # Insert key
+bindkey '^[[3~' delete-char                                     # Delete key
+bindkey '^[[C'  forward-char                                    # Right key
+bindkey '^[[D'  backward-char                                   # Left key
+bindkey '^[[5~' history-beginning-search-backward               # Page up key
+bindkey '^[[6~' history-beginning-search-forward                # Page down key
+
+source $ZDOTDIR/zsh_aliases
+
+# Theming section  
+autoload -U compinit colors zcalc
+compinit -d
+[ -f "~/.ghcup/env" ] && source "~/.ghcup/env" # ghcup-env
+source $PLUGDIR/powerlevel10k/powerlevel10k.zsh-theme
+
+# To customize prompt, run `p10k configure` or edit $ZDOTDIR/p10k.zsh.
+[[ ! -f $ZDOTDIR/p10k.zsh ]] || source $ZDOTDIR/p10k.zsh
+# source $PLUGDIR/fancy-ctrl-z/fancy-ctrl-z.zsh
+source $PLUGDIR/zsh-pyenv/zsh-pyenv.plugin.zsh
+# syntax
+source $PLUGDIR/fsh/fast-syntax-highlighting.plugin.zsh
+setopt AUTO_CD

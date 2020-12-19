@@ -1,0 +1,9 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhistcnt =7
+let g:netrw_dirhist_7='/home/lyiriyah'
+let g:netrw_dirhist_6='/home/lyiriyah/.mozilla/firefox/cuaborid.dev-edition-default-1606548315335/bookmarkbackups'
+let g:netrw_dirhist_5='/home'
+let g:netrw_dirhist_4='/home/lyiriyah'
+let g:netrw_dirhist_3='/home/lyiriyah/.mozilla/firefox'
+let g:netrw_dirhist_2='/home/lyiriyah/src/projects/cblackjack'
+let g:netrw_dirhist_1='/home/lyiriyah/.config/zsh/zshplugins/typewritten'
